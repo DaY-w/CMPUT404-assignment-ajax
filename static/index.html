@@ -39,7 +39,10 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
             try {
                 if (xhr.status==200) {
                     //XXX: parse some JSON from the request!
+                    reqJson = (JSON.parse(xhr.responseText))
+                    print(reqJson)
                     //XXX: Pass the data to the callback!
+                    callback(reqJson)
                 }
             } 
             catch(e) {
@@ -48,6 +51,13 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
         }
     };
     //XXX: POST to a URL
+    fetch(url, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(objects)
+    }).then(res => {
+        console.log("Request complete! response:", res);
+    });
     //XXX: set the mimetype and the accept headers!
     // Remember to use application/json !
 }
