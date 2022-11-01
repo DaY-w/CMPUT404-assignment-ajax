@@ -88,7 +88,7 @@ def update(entity):
     for key, value in (json.loads(request.data)).items():
         myWorld.update(entity, key, value)
 
-    return myWorld.get(entity)
+    return myWorld.world()
 
 
 @app.route("/world", methods=['POST', 'GET'])
@@ -107,7 +107,7 @@ def get_entity(entity):
 def clear():
     '''Clear the world out!'''
     myWorld.clear()
-    return myWorld.world
+    return myWorld.world()
 
 
 if __name__ == "__main__":

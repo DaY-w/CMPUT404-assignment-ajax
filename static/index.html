@@ -271,19 +271,14 @@
       function update() {
         //XXX: TODO Get the world from the webservice using a XMLHTTPRequest
         var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState == 4) {
-            try {
-              if (xhr.status == 200) {
-                drawFrame();
-              }
-            } catch (e) {
-              alert("Error: " + e.name);
-            }
-          }
-        };
+
+        xhr.addEventListener("load", () => {
+          world = JSON.parse(xhr.responseText);
+          drawNextFrame();
+        });
         xhr.open("GET", "/world", true);
         xhr.send();
+        drawFrame();
       }
 
       // 30 frames per second
