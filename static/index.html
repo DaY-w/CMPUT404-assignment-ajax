@@ -52,6 +52,7 @@
         xhr.open("POST", url, true);
         //XXX: set the mimetype and the accept headers!
         xhr.setRequestHeader("Content-type", "application/json");
+        xhr.setRequestHeader("Accept", "application/json");
         xhr.send(JSON.stringify(objects));
         // Remember to use application/json !
       }
@@ -62,7 +63,7 @@
       function drawCircle(context, entity) {
         with (context) {
           beginPath();
-          lineWidth = 3;
+          lineWidth = 16;
           var x = entity["x"];
           var y = entity["y"];
           //moveTo(x,y);
@@ -257,15 +258,15 @@
       // Add the application specific mouse listeners!
       //XXX: TODO Make these prettier!
       mouse.mousedowners.push(function (x, y, clicked, e) {
-        addEntityWithoutName({ x: x, y: y, colour: "blue" });
+        addEntityWithoutName({ x: x, y: y, colour: "#06D6A0" });
       });
 
       mouse.mouseuppers.push(function (x, y, clicked, e) {
-        addEntityWithoutName({ x: x, y: y, colour: "red" });
+        addEntityWithoutName({ x: x, y: y, colour: "#FFD166" });
       });
 
       mouse.mousedraggers.push(function (x, y, clicked, e) {
-        addEntityWithoutName({ x: x, y: y, colour: "green", radius: 10 });
+        addEntityWithoutName({ x: x, y: y, colour: "#EF476F", radius: 8 });
       });
 
       function update() {
