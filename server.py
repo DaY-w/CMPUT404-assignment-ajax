@@ -88,7 +88,7 @@ def update(entity):
     for key, value in (json.loads(request.data)).items():
         myWorld.update(entity, key, value)
 
-    return myWorld.world()
+    return myWorld.get(entity)
 
 
 @app.route("/world", methods=['POST', 'GET'])
