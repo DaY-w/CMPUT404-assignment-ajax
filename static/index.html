@@ -51,13 +51,13 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
         }
     };
     //XXX: POST to a URL
-    fetch(url, {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify(objects)
-    }).then(res => {
-        console.log("Request complete! response:", res);
-    });
+    // fetch(url, {
+    //     method: "POST",
+    //     headers: {'Content-Type': 'application/json'}, 
+    //     body: JSON.stringify(objects)
+    // }).then(res => {
+    //     console.log("Request complete! response:", res);
+    // });
     //XXX: set the mimetype and the accept headers!
     // Remember to use application/json !
 }
@@ -146,9 +146,11 @@ function getPosition(e) {
 
 function addEntity(entity, data) {
     world[entity] = data;
-    drawNextFrame(); // (but should we?)
+     // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just  modified!
-
+    drawNextFrame();
+    sendJSONXMLHTTPRequest(`/entity/${entity}`, data, () => {
+    })
 }
 
 var counter = 0;
@@ -272,7 +274,16 @@ mouse.mousedraggers.push(function(x,y,clicked,e) {
 
 function update() {
     //XXX: TODO Get the world from the webservice using a XMLHTTPRequest
-    drawFrame();
+    // sendJSONXMLHTTPRequest(null, null, (req) => {
+    //     world = req.data
+    //     drawFrame();
+    // })
+    // fetch("/world", {method: 'GET'}).then((res) => {
+    //     console.log(res)
+    //     // return res.json();
+    // }).then(() => {
+    //     console.log(data)
+    // })
 }
 
 // 30 frames per second
